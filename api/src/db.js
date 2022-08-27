@@ -30,10 +30,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon } = sequelize.models;
+const { Pokemon, Types } = sequelize.models;
 
 // Aca vendrian las relaciones
+Pokemon.belongsToMany(Types,{through: 'tipo-pokemon'}) // from documentation: To create a Many-To-Many relationship, two belongsToMany calls are used together.
+Types.belongsToMany(Pokemon,{through: 'tipo-pokemon'}) // esto es para crear las relaciones de muchos pokemones a muchos tipos y viceversa. 
 // Product.hasMany(Reviews);
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
