@@ -1,5 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@300&display=swap');
+
+.btn-all{
+  background-color: #dd3737;
+  padding: 8px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: -3px 3px 9px 2px #626161;
+  font-family: 'Montserrat', sans-serif;
+}
+.btn-all:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#root{
+  height: 100%;
+}
+body{
+  margin: 0;
+}
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {

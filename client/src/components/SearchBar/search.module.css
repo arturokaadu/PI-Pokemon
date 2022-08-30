@@ -1,0 +1,19 @@
+.searchInput{
+    height: 19px;
+    width: 50%;
+    border-radius: 20px;
+    padding: 5px;
+    border-width: 0.5px;
+}
+
+.lupita{
+    padding: 5px;
+    border-radius: 11px;
+    margin-left: 4px;
+    border-width: 0.5px;
+    background-color: #dff3f2;
+}
+
+.imgLupa{
+    width: 24px;
+}

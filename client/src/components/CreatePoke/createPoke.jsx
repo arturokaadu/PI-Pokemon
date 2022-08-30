@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getId, postPoke, getPokeType } from "../../actions";
-
+import styles from './createPoke.module.css';
 //necesito validar cada uno de los input con regular expressions
     let emptinessIKM = /\S+/;
     let valuableName =  /^[a-z]+$/i;
@@ -14,7 +14,7 @@ import { getId, postPoke, getPokeType } from "../../actions";
 function validated(input){
     let errors = {}
     if (!emptinessIKM.test(input.name) || !valuableName.test(input.name) || input.name.length < 4){
-        errors.name = "Debes completar un nombre con mas de 3 caracteres. Sin numeros"
+        errors.name = "Mas de 3 caracteres. Sin numeros"
 
     } // parseInt to return integer 
     if (!forNumber.test(input.life) || parseInt(input.life) <= 1 || parseInt(input.life) >= 300  ){
@@ -124,7 +124,7 @@ export default function CreatePoke() {
 
     //vamos a ver el input
     dispatch(postPoke(input))
-    alert('poke creado')
+    alert('pokemon creado exitosamente')
     setInput({
         name: "",
         life: "",
@@ -148,17 +148,18 @@ export default function CreatePoke() {
     dispatch(getPokeType());
   }, [dispatch]);
   //los input tienen que tener id? gran pregunta
-  return (
-    <div>
-      <Link to="/home">
-        <button> Regresa a ver todos los pokemons</button>
+  return ( 
+    <div className={styles.container}>
+      <Link  to="/home">
+        <button className={styles.btnLoad}> Regresa a ver todos los pokemons</button>
       </Link>
-      <h2> Crea tu pokemoncito!</h2>
+      <h2 className={styles.createPoke}> Crea tu pokemon!</h2>
 
-      <form onSubmit={(e)=> handleSubmit(e)}>
-        <div>
-          <label>Name: </label>
-          <input
+      <form  className={styles.form} onSubmit={(e)=> handleSubmit(e)}>
+      <div>
+        <div className={styles.boxes} >
+          <label className={styles.names}>Name: </label>
+          <input className={styles.inputBox}
             type="text"
             value={input.name}
             name="name"
@@ -166,99 +167,103 @@ export default function CreatePoke() {
           />
          {/* renderizamos el error que pusimos en la funcion */}
            {errors.name && (
-                        <p>{errors.name}</p>
+                        <p className={styles.forP}>{errors.name}</p>
                     )}
         </div>
-        <div>
-          <label>hp</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Life:  </label>
+          <input className={styles.inputBox}
             type="number"
             value={input.life}
             name="life"
             onChange={(e) => handleChange(e)}
           />
            {errors.life && (
-                        <p>{errors.life}</p>
+                        <p className={styles.forP}>{errors.life}</p>
                     )}
         </div>
-        <div>
-          <label> Attack</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Attack: </label>
+          <input className={styles.inputBox}
             type="number"
             value={input.attack}
             name="attack"
             onChange={(e) => handleChange(e)}
           />
            {errors.attack && (
-                        <p>{errors.attack}</p>
+                        <p className={styles.forP}>{errors.attack}</p>
                     )}
 
         </div>
 
-        <div>
-          <label>Defense</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Defense: </label>
+          <input className={styles.inputBox}
             type="number"
             value={input.defense}
             name="defense"
             onChange={(e) => handleChange(e)}
           />
            {errors.defense && (
-                        <p>{errors.defense
+                        <p className={styles.forP}>{errors.defense
                         }</p>
                     )}
         </div>
 
-        <div>
-          <label>Speed</label>
-          <input
-            type="numer"
+        <div className={styles.boxes}>
+          <label className={styles.names} >Speed: </label>
+          <input className={styles.inputBox}
+            type="number"
             value={input.speed}
             name="speed"
             onChange={(e) => handleChange(e)}
           />
            {errors.speed && (
-                        <p>{errors.speed}</p>
+                        <p  className={styles.forP}>{errors.speed}</p>
                     )}
         </div>
-        <div>
-          <label> Weight</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Weight: </label>
+          <input className={styles.inputBox}
             type="number"
             value={input.weight}
             name="weight"
             onChange={(e) => handleChange(e)}
           />
            {errors.weight && (
-                        <p>{errors.weight}</p>
+                        <p className={styles.forP}>{errors.weight}</p>
                     )}
         </div>
-        <div>
-          <label>Height</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Height: </label>
+          <input className={styles.inputBox}
             type="number"
             value={input.height}
             name="height"
             onChange={(e) => handleChange(e)}
           />
            {errors.height && (
-                        <p>{errors.height}</p>
+                        <p className={styles.forP}>{errors.height}</p>
                     )}
         </div>
 
-        <div>
-          <label>Image:</label>
-          <input
+        <div className={styles.boxes}>
+          <label className={styles.names}>Image: </label>
+          <input className={styles.inputBox}
             type="text"
             value={input.img}
             name="img"
             onChange={(e) => handleChange(e)}
-            placeholder=" Image..."
+            placeholder=" URL..."
           />
+          {errors.img && (
+                        <p className={styles.forP}>{errors.img}</p>
+                    )}
+        </div>
         </div>
         {/* //vamos a seleccionar los tipos */}
-        <select onChange={handleSelect}>
-          <option>Select type</option>
+        <select className={styles.selectTipo} onChange={handleSelect}>
+          <option>Selecciona Tipo: </option>
           {types?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -269,24 +274,24 @@ export default function CreatePoke() {
         </select>
         <div>
           {/* // para ver lo que se selecciona, i think */}
-          <ul>
+         {/*  <ul>
             <li>{input.types.map((el) => el + " ,")}</li>
-          </ul>
+          </ul> */}
           <div>
-          { Object.keys(errors).length ?<button  type="submit" disabled >Crear </button>  
-             : <button  type="submit" >Crear </button>             
+          { Object.keys(errors).length ?<button className={styles.btonCrearD}  type="submit" disabled >Crear </button>  
+             : <button className={styles.btonCrear} type="submit" >Crear </button>             
              
             } 
 
 
             </div>
         </div>
-        <div>
+        <div className={styles.typesContainer}>
           {/* probamos un input map para borrar */}
           {input.types.map((e) => (
-            <div>
-              <h1>{e}</h1>
-              <button type="reset" onClick={() => handleDelete(e)} value="x">
+            <div >
+              <h4>{e}</h4>
+              <button className={styles.delete} type="reset" onClick={() => handleDelete(e)} value="x">
                 X
               </button>
             </div>

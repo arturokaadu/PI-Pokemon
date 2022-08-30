@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@300&display=swap');
+
+body, html{
+    height: 100%;
+}
+.cardContainer{
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-areas:
+    "creapokes search recargapokes"
+    "select tipos api"
+    "pokes pokes  pokes"
+
+    "pagination pagination pagination";
+    background: url('../../assets/pokemonfields.png') no-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+
+    
+}
+
+.createpoke{
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: 700;
+   /*  color: rgb(16, 16, 15); */
+    /* -webkit-text-stroke: 0.1rem blue; */
+    font-size: 25px;
+    text-decoration: none;
+    grid-area: creapokes;
+    color: yellow;
+    -webkit-text-stroke: 0.1rem blue;
+}
+
+.recarga{
+    grid-area: recargapokes;
+    width: fit-content;
+  /*   border-radius: 5%; */
+  /*   width: 28%; */
+    height: 32%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 26px -30px;
+    background-color: #dd3737;
+    padding: 8px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: -3px 3px 9px 2px #626161;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.selectAttack {
+    grid-area: select;
+    height: 35px;
+    border-radius: 8px;
+    padding: 0 16px;
+    border: none;
+    box-shadow: 0px 1px 5px 3px rgb(0 0 0 / 10%);
+    width: 42%;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
+}
+
+.card{
+    grid-area: pokes;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 78vh;
+}
+
+.selectTipos{
+    grid-area: tipos;
+    height: 35px;
+    border-radius: 8px;
+    padding: 0 16px;
+    border: none;
+    box-shadow: 0px 1px 5px 3px rgb(0 0 0 / 10%);
+    width: 48%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.selectApi{
+    grid-area: api;
+    height: 35px;
+    border-radius: 8px;
+    padding: 0 16px;
+    border: none;
+    box-shadow: 0px 1px 5px 3px rgb(0 0 0 / 10%);
+    width: 48%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.searchB{
+    grid-area: search;
+    margin: 20px;
+}
+
+.pagination{
+    grid-area: pagination ;
+    
+}
+
+.name{
+    text-decoration: none;
+    font-family: 'Luckiest Guy';
+    color:#253064;
+}
+
+.tipos{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.noPokes{
+    grid-area: pikachu;
+}
+
+.image{
+    position: absolute;
+    width: 35%;
+    top: 61%;
+    right: 50%;
+    transform: translate(50%,-50%);
+}

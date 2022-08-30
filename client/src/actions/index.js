@@ -57,7 +57,9 @@ export function getPokeType (){
  export function getName(name){
   return async(dispatch) => {
     try {
-      const pokNam = await axios.get("http://localhost:3001/pokemons?name=" + name)
+      const pokNam = await axios.get("http://localhost:3001/pokemons?name=" + name) 
+       
+
       return dispatch ({
         type: "GET_NAME",
         payload: pokNam.data

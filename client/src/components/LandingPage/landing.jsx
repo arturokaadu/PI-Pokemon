@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import styles from './landing.module.css' ;
 export default function LandingPage() {
   return (
-    <div>
-      <h1> Todos Los Pokemoncitos</h1>
+      <div className={styles.wrapper}>
+    <div className={styles.landing}>
+      
+      <h1>Henry PokeApp</h1>
       <Link to="/home">
-        <button>Ingresar</button>
+        <button className='btn-all'>Ingresar</button>
       </Link>
+      </div>
     </div>
   );
 }

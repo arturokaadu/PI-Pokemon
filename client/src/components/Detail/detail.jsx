@@ -1,66 +1,61 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getId, restorePoke } from "../../actions";
-
-export default function Detail(){
+import styles from './detail.module.css';
+export default function Detail() {
   const dispatch = useDispatch();
   const pokeDeits = useSelector((state) => state.details);
-   const {id} = useParams();   
-   // Tengo que crear una accion para que no me cargue por error otra imagen previamente
+  const { id } = useParams();
+  // Tengo que crear una accion para que no me cargue por error otra imagen previamente
   useEffect(() => {
     //para acceder al id de ese pokemoncito. tambien se podia un useParams.
     dispatch(getId(id));
-    dispatch(restorePoke())
+    dispatch(restorePoke());
   }, [dispatch, id]);
 
-  console.log(pokeDeits)
+  console.log(pokeDeits);
   return (
-    <div>
-      <button>
-        <Link to="/createpokemon">Back to create pokes</Link>
+    <div className={styles.detalleBackground}>
+      <button className={styles.botones}>
+        <Link className={styles.detalleBtn} to="/createpokemon">Back to create pokes</Link>
       </button>
 
-      <button>
-        <Link to="/home">back to pokes</Link>
+      <button className={styles.botones}>
+        <Link className={styles.detalleBtn} to="/home">back to pokes</Link>
       </button>
 
-      <div>
+      <div className={styles.imgCard}>
         {/* object keys te devuelve tremendo array que sirve */}
         {Object.keys(pokeDeits).length > 0 ? (
-          <div>
-            <div>
-              <h2>{pokeDeits[0].name}</h2>
+          <div >
+            <div >
+              <h4 className={styles.detailName}>{pokeDeits[0].name}</h4>
+            </div>
+            <div >
+              <img className={styles.imagen} src={pokeDeits[0].img} alt="" />
             </div>
             <div>
-              <img src={pokeDeits[0].img} alt="" />
-            </div>
-            <div>
-              <h3>
-                Tipos:{" "}
-                {/* hay problemas */}
-               
-               
-                {
-                  pokeDeits[0].types[0].name 
-                                 
-                 }
-                 {pokeDeits[0].types[1] &&
-                   pokeDeits[0].types[1].name
-}
-              </h3>
-              <h4>Id: {pokeDeits[0].id}</h4>
-              <h4>Hp: {pokeDeits[0].life}</h4>
-              <h4>Ataque: {pokeDeits[0].attack}</h4>
-              <h4>Defensa: {pokeDeits[0].defense}</h4>
-              <h4>Velocidad: {pokeDeits[0].speed}</h4>
-              <h4>Altura: {pokeDeits[0].height}</h4>
-              <h4>Peso: {pokeDeits[0].weight}</h4>
+              <div >
+                <span className={styles.detailName}>Tipos:</span>  {/* ya no hay problemas */}
+                <div className={styles.tipos}>
+                {pokeDeits[0].types[0].name} {pokeDeits[0].types[1] && pokeDeits[0].types[1].name}
+                </div>
+              </div>
+              <div className={styles.stats}>
+              <span>Id: {pokeDeits[0].id}</span>
+              <span>Life: {pokeDeits[0].life}</span>
+              <span>Ataque: {pokeDeits[0].attack}</span>
+              <span>Defensa: {pokeDeits[0].defense}</span>
+              <span>Velocidad: {pokeDeits[0].speed}</span>
+              <span>Altura: {pokeDeits[0].height}</span>
+              <span>Peso: {pokeDeits[0].weight}</span>
+              </div>
             </div>
           </div>
-        ) : 
+        ) : (
           <p> Almost there</p>
-        }
+        )}
       </div>
     </div>
   );

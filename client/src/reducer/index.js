@@ -25,9 +25,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        pokemons: statusFiltered.length
-          ? statusFiltered
-          : [`${action.payload} Pokemons`],
+        pokemons: statusFiltered 
       };
     //Its working
     case "GET_NAME":
@@ -49,7 +47,8 @@ function rootReducer(state = initialState, action) {
       };
     //check this
     case "FILTER_DB":
-      const allPokesRevenge = state.allPokemons;
+       const allPokesRevenge = state.allPokemons;
+       console.log(action.payload);
       const filter2 =
         action.payload === "Created"
           ? allPokesRevenge.filter((ele) => ele.createdInDb)
@@ -62,7 +61,8 @@ function rootReducer(state = initialState, action) {
             : filter2.length
             ? filter2
             : ["Pokemons created"],
-      };
+      }; 
+     
       case "RESTORE_POKE":
         return{
             ...state,

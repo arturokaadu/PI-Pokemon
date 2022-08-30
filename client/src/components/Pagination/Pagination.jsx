@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './pagination.module.css'
 //pasamos por destructuring lo que necesitamos
 
 //it works
@@ -20,15 +21,16 @@ export default function Pagination({
     //necesitamos devolver el numero que corresponda.
     //dentro de la lista revisamos si pageNumbers tiene contenido.
     //cuando hacemos click le pasamos el paging que contiene el numero de pagina
-    <nav>
-      <ul>
+    <nav className={styles.pagination}>
+      
         {pageNumbers?.map((number) => (
-          <li className="number" key={number}>
-            <a onClick={() => paging(number)}>{number}</a>
-          </li>
+         <div className="number" key={number}>
+                     <button className={styles.btn} onClick={() => paging(number)}>{number}</button>
+          
+          </div>
         ))
         }
-      </ul>
+      
     </nav>
   );
 }

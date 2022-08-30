@@ -1,0 +1,71 @@
+.detalleBtn{
+    text-decoration: none;
+    color: rgb(198, 228, 255);
+   
+}
+
+.detalleBackground{
+    min-height: 100vh;
+    min-height: 100vh;
+    /* background: bisque; */
+    background: url('../../assets/pokemonarena.png') no-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.imgCard{
+
+    border-radius: 0.75em;
+    /*   box-shadow: 0 3px 3px #0001; */
+      /* background-color: rgb(147, 207, 29); */
+      /* width: 73%; */
+      height: 100%;
+      width: 296px;
+      backdrop-filter: blur(29px);
+      background-color: rgba(255, 255, 255, 0.2);
+      margin: 37px auto ;
+
+    }
+
+    .imagen{
+        width: 150px;
+    }
+
+
+    .stats{
+        display: flex;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        margin: 3%;
+    }
+.botones{
+    background-color: #dd3737;
+    padding: 8px 20px;
+    font-size: 16px;
+    margin-left: 2%;
+    color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: -3px 3px 9px 2px #626161;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.detailName{
+    text-decoration: none;
+    font-family: 'Luckiest Guy';
+    color: #9b8126;
+    font-size: 24px;
+}
+
+
+.tipos{
+    font-family: 'Montserrat', sans-serif;
+    color: cornflowerblue;
+    font-weight: bolder;
+}
+span{
+    margin: 2%;
+    color: black; 
+}
