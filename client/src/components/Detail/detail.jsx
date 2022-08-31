@@ -14,7 +14,7 @@ export default function Detail() {
     dispatch(restorePoke());
   }, [dispatch, id]);
 
-  console.log(pokeDeits);
+ /*  console.log(pokeDeits); */
   return (
     <div className={styles.detalleBackground}>
       <button className={styles.botones}>

@@ -103,7 +103,7 @@ function handleByType(e) {
       { currentPoke.length === 0  ? (<img className={styles.image} src={logo2} alt="No hay pokemones"></img>) :
           currentPoke.map((c) => {
           return (
-            <div  key={c.id}>
+            <div className={styles.cardFormat} key={c.id}>
               <Link className={styles.name} to={"/home" + c.id}>
                 <Card name={c.name} img={c.img} types={c.types} />
               </Link>
@@ -111,10 +111,11 @@ function handleByType(e) {
           );
 
         })
-      
         
         
       }
+      
+   {/*    {console.log(currentPoke)} */}
       
         </div>
    

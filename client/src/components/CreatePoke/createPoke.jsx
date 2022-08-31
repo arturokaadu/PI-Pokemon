@@ -82,7 +82,7 @@ export default function CreatePoke() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
+    /* console.log(input); */
     setErrors(validated({
         ...input,
         [e.target.name]: e.target.value
@@ -92,7 +92,7 @@ export default function CreatePoke() {
   function handleSelect(e) {
     e.preventDefault();
     //working here so we can choose up to two types, don't know if it works tho
-    input.types.length < 2 && !input.types.includes(e.target.value)
+    input.types.length < 2 && !input.types.includes(e.target.value) 
       ? setInput({
           ...input,
           types: [...input.types, e.target.value],
@@ -119,6 +119,7 @@ export default function CreatePoke() {
         !errors.height &&
         !errors.weight &&
         !errors.img 
+       /*  !errors.types */
     ) {
 
 
@@ -270,7 +271,7 @@ export default function CreatePoke() {
                 {e.name}
               </option>
             );
-          })}
+          })} 
         </select>
         <div>
           {/* // para ver lo que se selecciona, i think */}
@@ -278,8 +279,8 @@ export default function CreatePoke() {
             <li>{input.types.map((el) => el + " ,")}</li>
           </ul> */}
           <div>
-          { Object.keys(errors).length ?<button className={styles.btonCrearD}  type="submit" disabled >Crear </button>  
-             : <button className={styles.btonCrear} type="submit" >Crear </button>             
+          { Object.keys(errors).length && !input.types.length ?<button className={styles.btonCrearD}  type="submit" disabled/* !input.types.length} */ >Crear </button>  
+             : <button className={styles.btonCrear} type="submit" disabled={!input.types.length} >Crear </button>             
              
             } 
 

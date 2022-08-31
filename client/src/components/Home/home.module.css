@@ -30,6 +30,7 @@ body, html{
     grid-area: creapokes;
     color: yellow;
     -webkit-text-stroke: 0.1rem blue;
+
 }
 
 .recarga{
@@ -125,4 +126,8 @@ body, html{
     top: 61%;
     right: 50%;
     transform: translate(50%,-50%);
+}
+
+.cardFormat{
+    position: relative;
 }

@@ -10,6 +10,7 @@
     width: 73%;
     backdrop-filter: blur(29px);
     background-color: rgba(255, 255, 255, 0.2);
+    margin: auto;
 }
 .pokemons:empty{
     display: none;

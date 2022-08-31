@@ -11,6 +11,15 @@ export default function SearchBar() {
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);
+   
+  }
+
+  function handleKeyDown(e){
+    if (e.key === "Enter"){
+      handleSubmit(e);
+    }
+   
+
   }
 
   function handleSubmit(e) {
@@ -27,6 +36,7 @@ export default function SearchBar() {
         className={styles.searchInput}
         type="text"
         placeholder="Busca Pokemons"
+        onKeyDown={ (e) => {handleKeyDown(e)}}
         value={name}
         onChange={(e) => {
           handleInputChange(e);
