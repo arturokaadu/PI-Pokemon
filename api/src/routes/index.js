@@ -18,7 +18,7 @@ router.get("/pokemons", async (req, res) => {
     if (!pokesMagicos.length){
 
         const allPoke = await getApi();
-        console.log(allPoke)
+        /* console.log(allPoke) */
         pokesMagicos = [...allPoke]
     }
 
@@ -44,6 +44,39 @@ router.get("/pokemons", async (req, res) => {
     console.log(error);
   }
 });
+
+router.get('pokemons/types', async (req, res) => {
+  const {name} = req.query 
+  const pokeApiType = await axios.get("https://pokeapi.co/api/v2/type");
+  const losTipo = await pokeApiType.data.results.map((el) => el.name);
+
+  losTipo.forEach((element) => {
+    Types.findOrCreate({
+      where: { name: element },
+    });
+  });
+  const TodosTipoPoke = await Types.findAll();
+  res.send(TodosTipoPoke);
+
+  //para nombre de tipo 
+
+  if (name) {
+    // el lowerCase es por si las personas que buscan escriben con minusculas
+      
+    const losPoke =  pokeApiType.filter((e) =>
+      e.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    losPoke.length
+      ? res.status(200).send(losPoke)
+      : res.status(404).send("no hay tipo");
+  } else {
+    //cambie el json ---trace back if something breaks
+    res.status(200).send(pokeApiType);
+  }
+
+
+})
 
 router.get("/pokemons/:id", async (req, res) => {
   const { id } = req.params;
@@ -86,6 +119,8 @@ router.get("/types", async (req, res) => {
   res.send(TodosTipoPoke);
 });
 
+
+
 //
 router.post("/pokemons", async (req, res) => {
   const {
@@ -114,7 +149,7 @@ router.post("/pokemons", async (req, res) => {
     img,
     createdInDb,
   });
-  console.log(types)
+  /* console.log(types) */
    const tipoBd1 = await Types.findAll({
     where: { name: types[0]},
     });
@@ -129,6 +164,8 @@ router.post("/pokemons", async (req, res) => {
 
    res.send("Poke bien creado");
 });
+
+
 
 // Ejemplo: router.use('/auth', authRouter);
 
