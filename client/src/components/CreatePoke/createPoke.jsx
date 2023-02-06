@@ -56,6 +56,7 @@ It searches a string for a pattern, and returns true or false, depending on the 
 export default function CreatePoke() {
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
+  // si el state de errors estaba vacio, nunca iba a entrar a los errores
   const [errors, setErrors] = useState({a: ""})
   //const allpoke3 = useSelector((state) => state.allpokemons.map(pok => pok.name))
 
@@ -279,7 +280,7 @@ export default function CreatePoke() {
             <li>{input.types.map((el) => el + " ,")}</li>
           </ul> */}
           <div>
-          { Object.keys(errors).length && !input.types.length ?<button className={styles.btonCrearD}  type="submit" disabled/* !input.types.length} */ >Crear </button>  
+          { Object.keys(errors).length ?<button className={styles.btonCrearD}  type="submit" disabled/* !input.types.length} */ >Crear </button>  
              : <button className={styles.btonCrear} type="submit" disabled={!input.types.length} >Crear </button>             
              
             } 
@@ -302,6 +303,164 @@ export default function CreatePoke() {
     </div>
   );
 }
-//al crear poke dice poke creado pero se rompe
+
 //work on handle submit, then validations, then check if it works, then detail or pagination and then testing. Afterwards study and have things ready..
 //check for more validations so we cant add more than 200 in values
+
+/* 
+import React, { useState } from "react";
+import { useAuth } from "../firebase/context.jsx";
+import { useNavigate } from "react-router-dom";
+import { addUser, getUserByEmail } from "../../redux/actions/index.js";
+import { useDispatch } from "react-redux";
+
+export const Register = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    username: "",
+    confirmPassword: "",
+  });
+
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  const handleChange = ({ target: { name, value } }) => {
+    setUser({ ...user, [name]: value });
+    console.log(name, value);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (
+        validateMail(user.email) &&
+        validateUserName(user.username) &&
+        validatePassword(user.password)
+      ) {
+        if (handlePass()) {
+          setError("");
+
+          await signUp(user.email, user.password);
+
+          dispatch(
+            addUser({
+              email: user.email,
+              password: user.password,
+              username: user.username,
+            })
+          ).then(() => {
+            navigate("/Login");
+          });
+        } else {
+          setError("Passwords do not match");
+        }
+      } else {
+        throw new Error ("incorrect data")
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handlePass = () => {
+    if (user.password !== user.confirmPassword) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  function validateMail(email) {
+    return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      email
+    );
+  }
+  function validatePassword(password) {
+    return /^(?=[^a-z]*[a-z])(?=\D*\d)[^:&.~\s]{5,20}$/.test(password);
+  }
+
+  function validateUserName(userName) {
+    return /^[a-z][^\W_]{7,14}$/i.test(userName);
+  }
+
+  return (
+    <div className="text-primary flex flex-col justify-center items-center mt-8">
+      <form onSubmit={handleSubmit} className="w-96 space-y-2">
+        <div>{error && <p>{error}</p>}</div>
+        <h2 className="text-2xl">Sign Up</h2>
+        <div className="flex flex-col">
+          <div className="flex pt-4 pb-2 space-x-1">
+            <i className="material-icons">mail_outline</i>
+            <label htmlFor="email">Email</label>
+          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="email@example.com"
+            onChange={handleChange}
+            className="rounded-lg ring-secondary focus:border-secondary focus:ring-secondary"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="flex pt-4 pb-2 space-x-1">
+            <i className="material-icons">person_outline</i>
+            <label htmlFor="username">Username</label>
+          </div>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            onChange={handleChange}
+            className="rounded-lg ring-secondary focus:border-secondary focus:ring-secondary"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="flex pt-4 pb-2 space-x-1">
+            <i className="material-icons">lock_open</i>
+            <label htmlFor="password">Password</label>
+          </div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            onChange={handleChange}
+            className="rounded-lg ring-secondary focus:border-secondary focus:ring-secondary"
+          />
+        </div>
+        <div className="flex flex-col">
+          <div className="flex pt-4 pb-2 space-x-1">
+            <i className="material-icons">lock_outline</i>
+            <label>Confirm Password</label>
+          </div>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            onChange={handleChange}
+            className="rounded-lg ring-secondary focus:border-secondary focus:ring-secondary"
+          />
+        </div>
+        <p className="py-4">
+          By signing up, you agree to our{" "}
+          <span className="text-secondary cursor-pointer">
+            Terms and Conditions
+          </span>{" "}
+          and{" "}
+          <span className="text-secondary cursor-pointer">Privacy Policy</span>
+        </p>
+        <button
+          type="submit"
+          className="bg-secondary w-full h-11 rounded-lg text-white font-bold cursor-pointer"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+  );
+}; */

@@ -6,15 +6,15 @@ import {
   orderBy,
   orderByType,
   getPokeType,
-  filterDb
+  filterDb,
 } from "../../actions/index";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./home.module.css";
-import logo from '../../assets/icons8-refresh.svg'; 
-import logo2 from  '../../assets/Error pokemon.svg'
+import logo from "../../assets/icons8-refresh.svg";
+import logo2 from "../../assets/Error pokemon.svg";
 export default function Home() {
   //para hacer el dispatch de las acciones
 
@@ -23,6 +23,7 @@ export default function Home() {
   const [state, setState] = useState("");
   //para manipular los states
   const allPokemon = useSelector((state) => state.pokemons);
+  console.log(allPokemon);
   //allpokemons2 = useSelector ((state) => state.allPokemons)
   const allTypes = useSelector((state) => state.types);
 
@@ -35,44 +36,43 @@ export default function Home() {
   const currentPoke = allPokemon.slice(indexFirstPoke, indexLastPoke);
   //para setear la pagina en ese numero de pagina. Helps with rendering
   const paging = (pageNumber) => {
-      setCurrentPage(pageNumber);
-    };
-    
-    // se va a ejecutar cada vez que ocurra dispatch como en el on mount >// vacio no depende de nada
+    setCurrentPage(pageNumber);
+  };
+
+  // se va a ejecutar cada vez que ocurra dispatch como en el did mount >// vacio no depende de nada
   useEffect(() => {
     dispatch(getPokemon());
     dispatch(getPokeType());
-  }, [dispatch]);
+  }, [dispatch]); //otherwise loop
 
   function handleClick(e) {
     e.preventDefault(); // para que no se rompa. Just in case.
     dispatch(getPokemon());
-    setCurrentPage(1)
+    setCurrentPage(1);
   }
 
   function handleByAttack(e) {
     e.preventDefault(); // para que no se rompa. Just in case.
     dispatch(orderBy(e.target.value));
     setState(e.target.value);
-    setCurrentPage(1)
+    setCurrentPage(1);
     /* dispatch(getPokemon()); */
-}
+  }
 
-function handleByType(e) {
+  function handleByType(e) {
     e.preventDefault();
     dispatch(orderByType(e.target.value));
-    setCurrentPage(1)
+    setCurrentPage(1);
     //setState(e.target.value)
   }
- /*  function handleByName(e) {
+  /*  function handleByName(e) {
     e.preventDefault(); // para que no se rompa. Just in case.
     dispatch();
   } */
 
-  function handleFilter(e){
-    
-    dispatch(filterDb(e.target.value))
-    setCurrentPage(1)
+  function handleFilter(e) {
+    dispatch(filterDb(e.target.value));
+    setCurrentPage(1);
   }
 
   return (
@@ -80,16 +80,20 @@ function handleByType(e) {
       <Link to="/createpokemon" className={styles.createpoke}>
         <h3> Crea nuevos Pokemons! +</h3>
       </Link>
-      <button 
+      <button
         onClick={(e) => {
           handleClick(e);
-        }} className={styles.recarga}
+        }}
+        className={styles.recarga}
       >
         Recarga
-      </button >
-      <div >
-        <select className={styles.selectAttack} onChange={(e) => handleByAttack(e)}>
-        <option>Ordenar alfabeticamente</option>
+      </button>
+      <div>
+        <select
+          className={styles.selectAttack}
+          onChange={(e) => handleByAttack(e)}
+        >
+          <option>Ordenar alfabeticamente</option>
           <option value="ascendente">A-Z</option>
           <option value="descendente">Z-A</option>
           <option> Ordenar Por Ataque</option>
@@ -97,66 +101,67 @@ function handleByType(e) {
           <option value="menor">- ataque</option>
         </select>
       </div>
-        {/* cambiamos a current */}
-        <div className={styles.card}>
-      
-      { currentPoke.length === 0  ? (<img className={styles.image} src={logo2} alt="No hay pokemones"></img>) :
+      {/* cambiamos a current */}
+      <div className={styles.card}>
+        {/* cambiamos al current para que aparezcan los que quiero */}
+        {currentPoke.length === 0 ? (
+          <img
+            className={styles.image}
+            src={logo2}
+            alt="No hay pokemones"
+          ></img>
+        ) : (
           currentPoke.map((c) => {
-          return (
-            <div className={styles.cardFormat} key={c.id}>
-              <Link className={styles.name} to={"/home" + c.id}>
-                <Card name={c.name} img={c.img} types={c.types} />
-              </Link>
-            </div>
-          );
+            return (
+              <div className={styles.cardFormat} key={c.id}>
+                <Link className={styles.name} to={"/home" + c.id}>
+                  <Card
+                    name={c.name}
+                    img={c.img}
+                    types={c.types}
+                    attack={c.attack}
+                  />
+                </Link>
+              </div>
+            );
+          })
+        )}
 
-        })
-        
-        
-      }
-      
-   {/*    {console.log(currentPoke)} */}
-      
-        </div>
-   
-         <select className={styles.selectTipos} onChange={(e) => handleByType(e) }>
-          <option className={styles.tipos} value="All">Tipos de pokemon</option> 
-          {/* cambiamos al current para que aparezcan los que quiero */}
-           {allTypes.map((type) => (
-            <option value={type.name} key={type.name}>
-              {type.name}
-            </option>
-          ))}
-        </select> 
+        {/*    {console.log(currentPoke)} */}
+      </div>
 
-            <select className={styles.selectApi} onChange={e => handleFilter(e)}>
-            <option value="All">Api / Creados</option>
-            <option value="api">api</option>
-            <option value="Created">Created</option>
+      <select className={styles.selectTipos} onChange={(e) => handleByType(e)}>
+        <option className={styles.tipos} value="All">
+          Tipos de pokemon
+        </option>
+        {allTypes.map((type) => (
+          <option value={type.name} key={type.name}>
+            {type.name}
+          </option>
+        ))}
+      </select>
 
-            </select>
+      <select className={styles.selectApi} onChange={(e) => handleFilter(e)}>
+        <option value="All">Api / Creados</option>
+        <option value="api">api</option>
+        <option value="Created">Created</option>
+      </select>
 
-        {/* le pasamos el length porque necesitamos numeros */}
-            <div className={styles.pagination}>
-            <Pagination 
-             pokemonPerPage={pokemonPerPage}
-             allPokemon={allPokemon.length}
-             paging={paging}
-            
-            />
-            </div>
-            <div className={styles.searchB}>
-  <SearchBar
-  />
-  </div>
-      
+      {/* le pasamos el length porque necesitamos numeros */}
+      <div className={styles.pagination}>
+        <Pagination
+          pokemonPerPage={pokemonPerPage}
+          allPokemon={allPokemon.length}
+          paging={paging}
+        />
+      </div>
+      <div className={styles.searchB}>
+        <SearchBar />
+      </div>
     </div>
   );
 }
 // falta el select de api y created in db. Just that y estilos
 
-
 //los creados no entran el el filter y no se acomodan alfabeticamente.
-// los tipos que no estan me traen 0 a la pagina 1
-
-
+// los tipos que no estan me traen 0 a la pagina 1 ---> se resolvio agregando la imagen. No se renderizaba bien el contenido por pagina tampoco

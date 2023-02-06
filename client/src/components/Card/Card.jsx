@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./card.module.css";
 
-export default function Card({ name, img, id, types, createdInDb }) {
+export default function Card({ name, img, id, types, createdInDb, attack }) {
   return (
     <div className={styles.cards}>
       <div className={styles.pokemons}>
         <div>
           <h3>{name}</h3>
           <h3> {id}</h3>
+
         </div>
         <div className={styles.imageContainer}>
           <img
@@ -17,6 +18,7 @@ export default function Card({ name, img, id, types, createdInDb }) {
           
           />
         </div>
+        <div> {attack}</div>
         <div>
           {/* dentro de la primera posicion, 0, tenemos un tipo con su nombre y dentro del 1 otro */}
           <div className={styles.tipos}>

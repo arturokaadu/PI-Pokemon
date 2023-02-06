@@ -26,7 +26,7 @@ export default function Detail() {
       </button>
 
       <div className={styles.imgCard}>
-        {/* object keys te devuelve tremendo array que sirve */}
+        {/* object keys te devuelve tremendo array que sirve porque numbers */}
         {Object.keys(pokeDeits).length > 0 ? (
           <div >
             <div >

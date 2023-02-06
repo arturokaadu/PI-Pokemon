@@ -33,6 +33,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokemons: action.payload,
       };
+
+      case "GET_TYPE": 
+      return {
+        ...state,
+        types: action.payload,
+      }
     //check this later too
     case "GET_ID":
       return {

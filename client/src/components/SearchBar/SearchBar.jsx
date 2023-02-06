@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getName } from "../../actions";
+import { getName, getType } from "../../actions";
 import styles from "./search.module.css";
 import logo from "../../assets/icons8-search.svg";
 export default function SearchBar() {
@@ -25,7 +25,7 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault();
     if (name) {
-      dispatch(getName(name));
+      dispatch(getType(name));
     }
     setName("");
   }

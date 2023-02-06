@@ -16,6 +16,7 @@ export function getPokemon() {
           return dispatch({
               type: "GET_POKEMON",
               payload: pokemon.data
+              //representado en sservice el payload state.somethingneeded = payload.somethinneeded
           })
       } catch (error) {
           console.log(error);
@@ -74,6 +75,29 @@ export function getPokeType (){
     }
   }
 }
+
+export function getType(name){
+  return async(dispatch) => {
+    try {
+      const pokNam = await axios.get("http://localhost:3001/pokemons?type=" + name) 
+       
+
+      return dispatch ({
+        type: "GET_TYPE",
+        payload: pokNam.data
+      })
+    } catch (error) {
+         /* console.log(error)
+         return dispatch({
+          type: "GET_NAME",
+          payload: ['Pokemon']
+         }) */ 
+         alert('nombre Completo')   
+    }
+  }
+}
+
+
 //it works
 export function getId(id){
  return async function (dispatch){
