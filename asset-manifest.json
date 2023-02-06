@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/PI-Pokemon/static/css/main.d92c3c67.chunk.css",
+    "main.js": "/PI-Pokemon/static/js/main.4ea13b6c.chunk.js",
+    "main.js.map": "/PI-Pokemon/static/js/main.4ea13b6c.chunk.js.map",
+    "runtime-main.js": "/PI-Pokemon/static/js/runtime-main.49e3777b.js",
+    "runtime-main.js.map": "/PI-Pokemon/static/js/runtime-main.49e3777b.js.map",
+    "static/js/2.995369d6.chunk.js": "/PI-Pokemon/static/js/2.995369d6.chunk.js",
+    "static/js/2.995369d6.chunk.js.map": "/PI-Pokemon/static/js/2.995369d6.chunk.js.map",
+    "static/js/3.7ae53b7e.chunk.js": "/PI-Pokemon/static/js/3.7ae53b7e.chunk.js",
+    "static/js/3.7ae53b7e.chunk.js.map": "/PI-Pokemon/static/js/3.7ae53b7e.chunk.js.map",
+    "index.html": "/PI-Pokemon/index.html",
+    "static/css/main.d92c3c67.chunk.css.map": "/PI-Pokemon/static/css/main.d92c3c67.chunk.css.map",
+    "static/js/2.995369d6.chunk.js.LICENSE.txt": "/PI-Pokemon/static/js/2.995369d6.chunk.js.LICENSE.txt",
+    "static/media/Error pokemon.00a74718.svg": "/PI-Pokemon/static/media/Error pokemon.00a74718.svg",
+    "static/media/icons8-refresh.91424661.svg": "/PI-Pokemon/static/media/icons8-refresh.91424661.svg",
+    "static/media/icons8-search.5b5a18e8.svg": "/PI-Pokemon/static/media/icons8-search.5b5a18e8.svg",
+    "static/media/landing.module.css": "/PI-Pokemon/static/media/landingback.7c3463bd.webp",
+    "static/media/createPoke.module.css": "/PI-Pokemon/static/media/oakslab.01e6941b.jpg",
+    "static/media/detail.module.css": "/PI-Pokemon/static/media/pokemonarena.e10d3893.png",
+    "static/media/home.module.css": "/PI-Pokemon/static/media/pokemonfields.112a4868.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.49e3777b.js",
+    "static/js/2.995369d6.chunk.js",
+    "static/css/main.d92c3c67.chunk.css",
+    "static/js/main.4ea13b6c.chunk.js"
+  ]
+}
