@@ -17,3 +17,12 @@
 .imgLupa{
     width: 24px;
 }
+
+.searchInputId{
+    height: 19px;
+    width: 20%;
+    border-radius: 20px;
+    padding: 5px;
+    border-width: 0.5px;
+    margin-left: 8px;
+}

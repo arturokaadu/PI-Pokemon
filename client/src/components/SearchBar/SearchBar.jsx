@@ -116,10 +116,10 @@ export default function SearchBar() {
         onChange={handleNameChange}
 />
 <input
-className={styles.searchInput}
+className={styles.searchInputId}
 type= "number"
 name="id"
-placeholder="Search Pokemons by ID"
+placeholder="Search by ID"
 onKeyDown={handleKeyDown}
 value={id}
 onChange={handleIdChange}
