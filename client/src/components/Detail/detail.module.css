@@ -40,6 +40,7 @@
         margin: 3%;
     }
 .botones{
+  margin-top: 15px;
     background-color: #dd3737;
     padding: 8px 20px;
     font-size: 16px;
@@ -68,4 +69,44 @@
 span{
     margin: 2%;
     color: black; 
+}
+
+/* Media Queries */
+
+/* Styles for mobile view */
+/* @media (max-width: 768px) {
+  .detalleBackground {
+    background-size: cover;
+  }
+
+  .imgCard {
+    width: 40%; 
+    margin: 20px auto;
+    height: 80%;
+  }
+
+  .imagen {
+    width: 150px; 
+      }
+}
+ */
+/* Styles for tablet view */
+/* @media (min-width: 768px) and (max-width: 1023px) {
+  .detalleBackground {
+    background-size: cover;
+  }
+
+  .imgCard {
+    width: 30%;
+  }
+
+  .imagen {
+    width: 150px; 
+  }
+} */
+@media (max-width: 375px) {
+
+  .botones{
+    margin-top: 20px;
+  }
 }

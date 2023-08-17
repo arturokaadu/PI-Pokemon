@@ -45,7 +45,8 @@ router.get("/pokemons", async (req, res) => {
   }
 });
 
-router.get('pokemons/types', async (req, res) => {
+// in any event, I added /pokemons/types instead of pokemons/types. It works
+/* router.get('/pokemons/types', async (req, res) => {
   const {name} = req.query 
   const pokeApiType = await axios.get("https://pokeapi.co/api/v2/type");
   const losTipo = await pokeApiType.data.results.map((el) => el.name);
@@ -62,7 +63,7 @@ router.get('pokemons/types', async (req, res) => {
 
   if (name) {
     // el lowerCase es por si las personas que buscan escriben con minusculas
-      
+      console.log(pokeApiType);
     const losPoke =  pokeApiType.filter((e) =>
       e.name.toLowerCase().includes(name.toLowerCase())
     );
@@ -76,8 +77,67 @@ router.get('pokemons/types', async (req, res) => {
   }
 
 
-})
+}) */
+/* router.get('/pokemons/types', async (req, res) => {
+  const { name, types } = req.query;
+  const pokeApiType = await axios.get("https://pokeapi.co/api/v2/type");
+  const losTipo = await pokeApiType.data.results.map((el) => el.name);
 
+  losTipo.forEach((element) => {
+    Types.findOrCreate({
+      where: { name: element },
+    });
+  });
+  const TodosTipoPoke = await Types.findAll();
+
+  //para nombre de tipo 
+  if (types) {
+    // el lowerCase es por si las personas que buscan escriben con minusculas
+    const filteredTypes = TodosTipoPoke.filter((type) =>
+      type.name.toLowerCase().includes(types.toLowerCase())
+    );
+
+    filteredTypes.length
+      ? res.status(200).send(filteredTypes)
+      : res.status(404).send("no existe ese tipo");
+  } else {
+    // Send all types if no type name is provided
+    res.status(200).send(TodosTipoPoke.map((type) => ({ name: type.name })));
+  }
+});
+ */
+
+router.get("/pokemons/types", async (req, res) => {
+  const { name } = req.query;
+
+  try {
+    const pokemons = await TodoPokemoncitos(pokesMagicos);
+
+    if (!name) {
+      // If 'name' parameter is not provided, return all Pokémon types
+      const allTypes = pokemons.reduce((types, pokemon) => {
+        types.push(...pokemon.types.map((type) => type.name));
+        return types;
+      }, []);
+
+      const uniqueTypes = Array.from(new Set(allTypes));
+
+      res.status(200).send(uniqueTypes);
+    } else {
+      // If 'name' parameter is provided, filter Pokémon types by name
+      const filteredPokemons = pokemons.filter((pokemon) =>
+        pokemon.types.some(
+          (type) => type.name && type.name.toLowerCase() === name.toLowerCase()
+        )
+      );
+
+      res.status(200).send(filteredPokemons);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error fetching Pokémon types");
+  }
+});
 router.get("/pokemons/:id", async (req, res) => {
   const { id } = req.params;
   const pokeTotal = await TodoPokemoncitos(pokesMagicos);
@@ -105,6 +165,39 @@ try {
 
 
 }) */
+// route for evolution handling
+/* router.get("/pokemons/:id/evolution", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const speciesResponse = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+    const evolutionChainUrl = speciesResponse.data.evolution_chain.url;
+    const evolutionChainId = evolutionChainUrl.split('/').slice(-2, -1)[0];
+    
+    const evolutionChainResponse = await axios.get(`https://pokeapi.co/api/v2/evolution-chain/${evolutionChainId}/`);
+    const evolutionChainData = evolutionChainResponse.data;
+    
+    res.status(200).json(evolutionChainData);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error fetching evolution chain data");
+  }
+}); */
+
+router.get("/pokemons/:id/evolution", async (req, res) => {
+  const {id} = req.params;
+  try {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+    const evolutionChainUril = response.data.evolution_chain.url;
+    const evolutionChainResponse = await axios.get(evolutionChainUril);
+    const evolutionChainData = evolutionChainResponse.data;
+
+    res.status(200).json(evolutionChainData)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error fetching evolution chain data")
+  }
+})
+
 
 router.get("/types", async (req, res) => {
   const pokeApiType = await axios.get("https://pokeapi.co/api/v2/type");

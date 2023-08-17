@@ -1,51 +1,132 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getName, getType } from "../../actions";
+import { getName, getPokeType, getType, getId } from "../../actions";
 import styles from "./search.module.css";
 import logo from "../../assets/icons8-search.svg";
+
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-
-  function handleInputChange(e) {
+  const [type, setType] = useState("");
+  const [id, setId] = useState("")
+  const [searchInput, setSearchInput] = useState("")
+  function handleNameChange(e) {
     e.preventDefault();
-    setName(e.target.value);
-   
+    const { name, value } = e.target;
+    /* if (name === "name") {
+      setName(value);
+    } else if (name === "type") {
+      setType(value);
+    } */ 
+    setSearchInput(e.target.value)
   }
 
-  function handleKeyDown(e){
-    if (e.key === "Enter"){
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
       handleSubmit(e);
     }
-   
-
   }
+    // Helper function to check if the input is a type
+    function isType(input) {
+      const allTypes = [
+       "normal",
+       "ground",
+       "rock",
+        "flying",
+        "fighting",
+        "poison",
+        "ghost",
+        "bug",
+        "steel",
+        "fire",
+        "grass",
+        "water", 
+        "electric",
+        "psychic",
+        "ice",
+        "dragon",
+        "fairy",
+        "unknown",
+        "shadow",
+      
+      ];
+  
+      return allTypes.includes(input);
+    }
+  
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (name) {
-      dispatch(getType(name));
+    /* if (name) {
+      dispatch(getName(name));
+      setName("");
+    } else if (type) {
+      //console.log("Searching by type: ", type); 
+      dispatch(getType(type));
+      setType("");
+    } */
+    const input = searchInput.trim().toLowerCase();
+    if (input) {
+      if(isType(input)){
+        dispatch(getType(input))
+      } else {
+        dispatch(getName(input))
+      }
+      setSearchInput("")
     }
-    setName("");
+    else if (id){
+      dispatch(getId(id));
+      setId("")
+    }
   }
 
+  function handleIdChange(e) {
+    e.preventDefault();
+    setId(e.target.value)
+  }
   return (
     <div>
-      <input
-        className={styles.searchInput}
+  {/*    <input
+  className={styles.searchInput}
+  type="text"
+  name="name"
+  placeholder="Search Pokemons by name"
+  onKeyDown={handleKeyDown}
+  value={name}
+  onChange={handleNameChange}
+/>
+
+<input
+  className={styles.searchInput}
+  type="text"
+  name="type"
+  placeholder="Search Pokemons by type"
+  onKeyDown={handleKeyDown}
+  value={type}
+  onChange={handleNameChange}
+/> */}
+
+<input  className={styles.searchInput}
         type="text"
-        placeholder="Busca Pokemons"
-        onKeyDown={ (e) => {handleKeyDown(e)}}
-        value={name}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-      />
+        placeholder="Search Pokemons by name or type"
+        onKeyDown={handleKeyDown}
+        value={searchInput}
+        onChange={handleNameChange}
+/>
+<input
+className={styles.searchInput}
+type= "number"
+name="id"
+placeholder="Search Pokemons by ID"
+onKeyDown={handleKeyDown}
+value={id}
+onChange={handleIdChange}
+></input>
       <button
         className={styles.lupita}
         type="submit"
-        value={name}
         onClick={(e) => {
           handleSubmit(e);
         }}

@@ -23,7 +23,7 @@ export default function Home() {
   const [state, setState] = useState("");
   //para manipular los states
   const allPokemon = useSelector((state) => state.pokemons);
-  console.log(allPokemon);
+  //console.log(allPokemon);
   //allpokemons2 = useSelector ((state) => state.allPokemons)
   const allTypes = useSelector((state) => state.types);
 
@@ -119,7 +119,7 @@ export default function Home() {
                     name={c.name}
                     img={c.img}
                     types={c.types}
-                    attack={c.attack}
+                    id= {c.id}
                   />
                 </Link>
               </div>
@@ -165,3 +165,6 @@ export default function Home() {
 
 //los creados no entran el el filter y no se acomodan alfabeticamente.
 // los tipos que no estan me traen 0 a la pagina 1 ---> se resolvio agregando la imagen. No se renderizaba bien el contenido por pagina tampoco
+
+
+//2023 add search by type. Same way as by name i guess

@@ -7,7 +7,7 @@ export default function Card({ name, img, id, types, createdInDb, attack }) {
       <div className={styles.pokemons}>
         <div>
           <h3>{name}</h3>
-          <h3> {id}</h3>
+          {/* <h3> {id}</h3> */}
 
         </div>
         <div className={styles.imageContainer}>
@@ -18,7 +18,7 @@ export default function Card({ name, img, id, types, createdInDb, attack }) {
           
           />
         </div>
-        <div> {attack}</div>
+        <div>Número de Pokemon: {id}</div>
         <div>
           {/* dentro de la primera posicion, 0, tenemos un tipo con su nombre y dentro del 1 otro */}
           <div className={styles.tipos}>

@@ -1,6 +1,7 @@
 {
-  "homepage": "http://arturokaadu.github.io/PI-Pokemon",
-  "name": "client",
+
+ "homepage": "/",
+ "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

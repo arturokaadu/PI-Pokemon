@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getId, restorePoke } from "../../actions";
+import { getId, getDetailId, restorePoke } from "../../actions";
 import styles from './detail.module.css';
+import Evolution from "../Evolution/Evolution";
 export default function Detail() {
   const dispatch = useDispatch();
   const pokeDeits = useSelector((state) => state.details);
@@ -10,11 +11,13 @@ export default function Detail() {
   // Tengo que crear una accion para que no me cargue por error otra imagen previamente
   useEffect(() => {
     //para acceder al id de ese pokemoncito. tambien se podia un useParams.
-    dispatch(getId(id));
+    dispatch(getDetailId(id));
     dispatch(restorePoke());
   }, [dispatch, id]);
-
+console.log(pokeDeits);
  /*  console.log(pokeDeits); */
+ /* console.log("pokeDeits:", pokeDeits);
+  console.log("pokeDeits.evolution:", pokeDeits.evolution); */
   return (
     <div className={styles.detalleBackground}>
       <button className={styles.botones}>
@@ -57,6 +60,8 @@ export default function Detail() {
           <p> Almost there</p>
         )}
       </div>
+       {/* Render the ShowEvolution component and pass the evolution data as a prop */}
+       {pokeDeits.evolution && <Evolution evolution={pokeDeits.evolution} />}
     </div>
   );
 }

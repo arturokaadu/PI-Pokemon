@@ -37,14 +37,27 @@ function rootReducer(state = initialState, action) {
       case "GET_TYPE": 
       return {
         ...state,
-        types: action.payload,
+        pokemons: action.payload,
       }
     //check this later too
     case "GET_ID":
-      return {
+      //console.log("Details data: ", action.payload);
+  
+    return {
+        ...state,
+        // iba a ponerle id pero por las dudas algo ya se llame id y crashee
+        pokemons: action.payload,
+        
+      };
+      //FOR DETAILS AND NOT FOR IDS IN SEARCHBAR
+      case "GET_DETAIL_ID":
+      //console.log("Details data: ", action.payload);
+  
+    return {
         ...state,
         // iba a ponerle id pero por las dudas algo ya se llame id y crashee
         details: action.payload,
+        
       };
     //check this as well
     case "POST_POKEMON":
