@@ -77,9 +77,12 @@ export default function Home() {
 
   return (
     <div className={styles.cardContainer}>
+      <div className={styles.nameContainer}>
+
       <Link to="/createpokemon" className={styles.createpoke}>
-        <h3> Crea nuevos Pokemons! +</h3>
+        <h3> Crea nuevos Pokemons!</h3>
       </Link>
+      </div>
       <button
         onClick={(e) => {
           handleClick(e);

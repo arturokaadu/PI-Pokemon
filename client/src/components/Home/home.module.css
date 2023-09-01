@@ -16,8 +16,8 @@ body, html{
     height: 100%;
     width: 100%;
     background-size: cover;
-
-    
+/*     overflow: hidden;
+ */    
 }
 
 .createpoke{
@@ -130,4 +130,88 @@ body, html{
 
 .cardFormat{
     position: relative;
+}
+
+@media (max-width: 874px) {
+ 
+   .searchB{
+    margin-top: 65px;
+    margin-left: 10px;
+    margin-bottom: 14px;
+    /* float: left; */
+    /* clear: right; */
+    margin-left: -200px;
+
+   }
+
+   .recarga{
+    height: 27%;
+   /*  margin: 19px -180px; */
+   margin-top: 68px;
+   margin-left: -13px;
+   }
+
+.createpoke{
+    font-size: 22px;
+}
+
+}
+
+
+@media (max-width: 707px){
+/*    .nameContainer{
+    display: flex;
+    justify-content: center;
+   }
+    .createpoke{
+        font-size: 22px;
+    } */
+    .recarga{
+        margin-left: -10px;
+        margin-top: 66px;
+    }
+    .nameContainer h3{
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 661px){
+    .nameContainer h3{
+        margin-top: 8px;
+    }
+    
+    .name{
+        font-size: 12px ;
+    }
+}
+
+
+@media (max-width: 567px){
+    .cardContainer{
+overflow: hidden;
+    }
+}
+
+@media (max-width: 462px){
+    .card{
+
+    grid-template-columns: repeat(3, 1fr);
+    transform: scale(0.98);
+
+    }
+    .nameContainer h3{
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 452px){
+    .searchB{
+        transform: scale(0.8);
+        margin-right: -18px;
+        margin-left: -208px;
+
+    }
+    .nameContainer h3{
+        margin-top: 8px;
+    }
 }

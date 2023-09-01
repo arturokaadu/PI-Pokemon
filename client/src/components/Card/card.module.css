@@ -53,3 +53,19 @@
     font-family: 'Montserrat', sans-serif;
     color: #7f5700;
 }
+
+@media (max-width: 462px){
+    .pokemons{
+        width: 92%;
+    }
+}
+
+@media (max-width: 672px){
+    .pokemons{
+        width: 84%;
+    }
+
+    .imageContainer{
+        transform: scale(0.7);
+    }
+}
