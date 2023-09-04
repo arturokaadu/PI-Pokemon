@@ -110,7 +110,7 @@ export default function SearchBar() {
 
 <input  className={styles.searchInput}
         type="text"
-        placeholder="Search Pokemons by name or type"
+        placeholder="Search by name or type"
         onKeyDown={handleKeyDown}
         value={searchInput}
         onChange={handleNameChange}

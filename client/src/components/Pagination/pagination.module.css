@@ -29,3 +29,16 @@
     transform: scale(0.9);
   }
 
+  @media (max-width: 571px){
+    .btn{
+        --size: 22px;
+        --margin: 2px
+    }
+  }
+
+  @media (max-width: 320px){
+    .btn{
+        --size:20px;
+        --margin: -2px;
+    }
+  }

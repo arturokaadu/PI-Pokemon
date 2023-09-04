@@ -1,29 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@300&display=swap');
 
-body, html{
+body,
+html {
     height: 100%;
 }
-.cardContainer{
+
+.cardContainer {
     display: grid;
     /* grid-template-columns: repeat(4, 1fr); */
     grid-template-areas:
-    "creapokes search recargapokes"
-    "select tipos api"
-    "pokes pokes  pokes"
+        "creapokes search recargapokes"
+        "select tipos api"
+        "pokes pokes  pokes"
 
-    "pagination pagination pagination";
+        "pagination pagination pagination";
     background: url('../../assets/pokemonfields.png') no-repeat;
     height: 100%;
     width: 100%;
     background-size: cover;
-/*     overflow: hidden;
- */    
+    /*     overflow: hidden;
+ */
 }
 
-.createpoke{
+.createpoke {
     font-family: 'Luckiest Guy', cursive;
     font-weight: 700;
-   /*  color: rgb(16, 16, 15); */
+    /*  color: rgb(16, 16, 15); */
     /* -webkit-text-stroke: 0.1rem blue; */
     font-size: 25px;
     text-decoration: none;
@@ -33,11 +35,11 @@ body, html{
 
 }
 
-.recarga{
+.recarga {
     grid-area: recargapokes;
     width: fit-content;
-  /*   border-radius: 5%; */
-  /*   width: 28%; */
+    /*   border-radius: 5%; */
+    /*   width: 28%; */
     height: 32%;
     display: flex;
     align-items: center;
@@ -65,14 +67,14 @@ body, html{
     margin: auto;
 }
 
-.card{
+.card {
     grid-area: pokes;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     min-height: 78vh;
 }
 
-.selectTipos{
+.selectTipos {
     grid-area: tipos;
     height: 35px;
     border-radius: 8px;
@@ -84,7 +86,7 @@ body, html{
     font-family: 'Montserrat', sans-serif;
 }
 
-.selectApi{
+.selectApi {
     grid-area: api;
     height: 35px;
     border-radius: 8px;
@@ -96,122 +98,163 @@ body, html{
     font-family: 'Montserrat', sans-serif;
 }
 
-.searchB{
+.searchB {
     grid-area: search;
     margin: 20px;
 }
 
-.pagination{
-    grid-area: pagination ;
-    
+.pagination {
+    grid-area: pagination;
+
 }
 
-.name{
+.name {
     text-decoration: none;
     font-family: 'Luckiest Guy';
-    color:#253064;
+    color: #253064;
 }
 
-.tipos{
+.tipos {
     font-family: 'Montserrat', sans-serif;
 }
 
-.noPokes{
+.noPokes {
     grid-area: pikachu;
 }
 
-.image{
+.image {
     position: absolute;
     width: 35%;
     top: 61%;
     right: 50%;
-    transform: translate(50%,-50%);
+    transform: translate(50%, -50%);
 }
 
-.cardFormat{
+.cardFormat {
     position: relative;
 }
 
 @media (max-width: 874px) {
- 
-   .searchB{
-    margin-top: 65px;
-    margin-left: 10px;
-    margin-bottom: 14px;
-    /* float: left; */
-    /* clear: right; */
-    margin-left: -200px;
 
-   }
+    .searchB {
+        margin-top: 65px;
+        margin-left: 10px;
+        margin-bottom: 14px;
+        /* float: left; */
+        /* clear: right; */
+        margin-left: -200px;
 
-   .recarga{
-    height: 27%;
-   /*  margin: 19px -180px; */
-   margin-top: 68px;
-   margin-left: -13px;
-   }
+    }
 
-.createpoke{
-    font-size: 22px;
+    .recarga {
+        height: 27%;
+        /*  margin: 19px -180px; */
+        margin-top: 68px;
+        margin-left: -13px;
+    }
+
+    .createpoke {
+        font-size: 22px;
+    }
+
 }
 
-}
 
+@media (max-width: 707px) {
 
-@media (max-width: 707px){
-/*    .nameContainer{
+    /*    .nameContainer{
     display: flex;
     justify-content: center;
    }
     .createpoke{
         font-size: 22px;
     } */
-    .recarga{
+    .recarga {
         margin-left: -10px;
         margin-top: 66px;
     }
-    .nameContainer h3{
+
+    .nameContainer h3 {
         margin-top: 8px;
     }
 }
 
-@media (max-width: 661px){
-    .nameContainer h3{
+@media (max-width: 661px) {
+    .nameContainer h3 {
         margin-top: 8px;
     }
-    
-    .name{
-        font-size: 12px ;
+
+    .name {
+        font-size: 12px;
     }
 }
 
 
-@media (max-width: 567px){
-    .cardContainer{
-overflow: hidden;
+@media (max-width: 567px) {
+    .cardContainer {
+        overflow: hidden;
     }
 }
 
-@media (max-width: 462px){
-    .card{
+@media (max-width: 462px) {
+    .card {
 
-    grid-template-columns: repeat(3, 1fr);
-    transform: scale(0.98);
+        grid-template-columns: repeat(3, 1fr);
+        transform: scale(0.98);
 
     }
-    .nameContainer h3{
+
+    .nameContainer h3 {
         margin-top: 8px;
     }
 }
 
-@media (max-width: 452px){
-    .searchB{
-        transform: scale(0.8);
+@media (max-width: 452px) {
+    .searchB {
+      /*   transform: scale(0.9); */
         margin-right: -18px;
         margin-left: -208px;
 
     }
-    .nameContainer h3{
+
+    .nameContainer h3 {
         margin-top: 8px;
+    }
+
+    .recarga{
+        transform: translate(7px, -45px);
+    }
+}
+
+@media (max-width: 439px) {
+    .selectTipos {
+        transform: translateX(-33px);
+        width: 137%;
+    }
+
+    .selectAttack {
+        width: 66%;
+        transform: translateX(-23px);
+    }
+
+    .selectApi {
+        width: 75%;
+        transform: translateX(-7px);
+    }
+
+    .card {
+        transform: scale(0.9);
+        margin-left: -3px;
+    }
+
+    .recarga {
+        transform: translate(-102px, 121px);
+        height: 20px;
+    }
+
+    .searchB {
+        transform: translateX(51px);
+        margin-bottom: 21px;
+        padding-top: 7px;
     }
 }
