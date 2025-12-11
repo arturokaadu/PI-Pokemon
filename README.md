@@ -1,187 +1,74 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+# PI-Pokemon - Single Page Application
 
-# Individual Project - Henry Pokemon
+![React](https://img.shields.io/badge/-React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Redux](https://img.shields.io/badge/-Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/-Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Sequelize](https://img.shields.io/badge/-Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)
 
-<img height="150" src="./pokemon.png" />
+**Individual Project - Henry Bootcamp**
 
-## Objetivos del Proyecto
+![App Screenshot](screenshot.png)
 
-- Construir una App utlizando React, Redux, Node y Sequelize.
-- Afirmar y conectar los conceptos aprendidos en la carrera.
-- Aprender mejores prácticas.
-- Aprender y practicar el workflow de GIT.
-- Usar y practicar testing.
+---
 
-## Horarios y Fechas
+<details open>
+<summary><strong>🇪🇸 VERSIÓN EN ESPAÑOL</strong></summary>
 
-El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
+### 📄 Descripción
+Esta es una Single Page Application (SPA) temática de Pokémon. Permite buscar, filtrar, ordenar y crear pokemones. Consume datos de la [PokeAPI](https://pokeapi.co/) y también cuenta con una base de datos local propia para almacenar los pokemones creados por el usuario.
 
-## Comenzando
+### ✨ Funcionalidades
+*   **Landing Page**: Una página de bienvenida con imagen de fondo y botón de ingreso.
+*   **Home Page**:
+    *   Visualización de tarjetas de Pokémon con imagen, nombre y tipos.
+    *   **Buscador**: Encuentra pokemones por nombre exacto.
+    *   **Filtros**: Por tipo de producto (fuego, agua, etc.) y por origen (API o Base de Datos).
+    *   **Ordenamiento**: Alfabético (A-Z, Z-A) y por Fuerza (Ataque).
+    *   **Paginado**: Navegación fluida entre listados.
+*   **Detalle**: Vista detallada con ID, estadísticas (vida, ataque, defensa, velocidad), altura, peso y tipos.
+*   **Creación**: Formulario controlado para crear nuevos pokemones y asignarle tipos.
 
- 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
- 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
+### 🛠 Tecnologías
+*   **Frontend**: React, Redux, CSS puro (sin librerías externas).
+*   **Backend**: Node.js, Express.
+*   **Base de Datos**: PostgreSQL, Sequelize.
 
-Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
+### 🚀 Instalación
+1.  Clonar el repositorio.
+2.  Instalar dependencias: `npm install` en carpetas `api` y `client`.
+3.  Configurar `.env` en `api` con tus credenciales de PostgreSQL.
+4.  Iniciar: `npm start` en ambas carpetas.
+</details>
 
-__IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
+<br>
 
-Actualmente las versiónes necesarias son:
+<details>
+<summary><strong>🇬🇧 ENGLISH VERSION</strong></summary>
 
-- __Node__: 12.18.3 o mayor
-- __NPM__: 6.14.16 o mayor
+### 📄 Description
+This is a Pokémon-themed Single Page Application (SPA). It allows users to search, filter, sort, and create Pokémons. It consumes data from the [PokeAPI](https://pokeapi.co/) and also uses a local database to store user-created Pokémons.
 
-Para verificar que versión tienen instalada:
+### ✨ Features
+*   **Landing Page**: Welcome screen with background image and entry button.
+*   **Home Page**:
+    *   Display Pokémon cards with image, name, and types.
+    *   **Search**: Find Pokémons by exact name.
+    *   **Filters**: By type (fire, water, etc.) and origin (API or Database).
+    *   **Sorting**: Alphabetical (A-Z, Z-A) and by Strength (Attack).
+    *   **Pagination**: Smooth navigation through lists.
+*   **Detail View**: Detailed stats including ID, health, attack, defense, speed, height, weight, and types.
+*   **Creation**: Controlled form to create new Pokémons and assign types.
 
-```bash
-node -v
-npm -v
-```
+### 🛠 Tech Stack
+*   **Frontend**: React, Redux, Pure CSS.
+*   **Backend**: Node.js, Express.
+*   **Database**: PostgreSQL, Sequelize.
 
-__ACLARACIÓN:__ Las dependencias actuales se encuentran en las versiones que venimos trabajando durante el bootcamp.
-
-Versiones:
-
-- __react__: 17.0.1
-- __react-dom__: 17.0.1
-- __react-router-dom__: 5.2.0
-- __redux__: 4.0.5
-- __react-redux__: 7.2.3
-
-Está permitido, __bajo su responsabilidad__, actualizar las dependencias a versiones más actuales.
-
-> __IMPORTANTE:__ Versiones mas actuales podrían presentar configuraciones diferentes respecto a las versiones en las que venimos trabajando durante el bootcamp.
-
-## BoilerPlate
-
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
-
-En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
-
-```env
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
-DB_HOST=localhost
-```
-
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
-
-Adicionalmente será necesario que creen desde psql una base de datos llamada `pokemon`
-
-El contenido de `client` fue creado usando: Create React App.
-
-## Enunciado
-
-La idea general es crear una aplicación en la cual se puedan ver los distintos Pokemon utilizando la api externa [pokeapi](https://pokeapi.co/) y a partir de ella poder, entre otras cosas:
-
-- Buscar pokemons
-- Filtrarlos / Ordenarlos
-- Crear nuevos pokemons
-
-__IMPORTANTE__: Para las funcionalidades de filtrado y ordenamiento NO pueden utilizar los endpoints de la API externa que ya devuelven los resultados filtrados u ordenados sino que deben realizarlo ustedes mismos. En particular alguno de los ordenamientos o filtrados debe si o si realizarse desde el frontend.
-
-### Únicos Endpoints/Flags que pueden utilizar
-
-- GET <https://pokeapi.co/api/v2/pokemon>
-- GET <https://pokeapi.co/api/v2/pokemon/{id}>
-- GET <https://pokeapi.co/api/v2/pokemon/{name}>
-- GET <https://pokeapi.co/api/v2/type>
-
-### Requerimientos mínimos
-
-A continuación se detallaran los requerimientos mínimos para la aprobación del proyecto individial. Aquellos que deseen agregar más funcionalidades podrán hacerlo. En cuanto al diseño visual no va a haber wireframes ni prototipos prefijados sino que tendrán libertad de hacerlo a su gusto pero tienen que aplicar los conocimientos de estilos vistos en el curso para que quede agradable a la vista.
-
-__IMPORTANTE__: No se permitirá utilizar librerías externas para aplicar estilos a la aplicación. Tendrán que utilizar CSS con algunas de las opciones que vimos en dicha clase (CSS puro, CSS Modules o Styled Components)
-
-#### Tecnologías necesarias
-
-- [ ] React
-- [ ] Redux
-- [ ] Express
-- [ ] Sequelize - Postgres
-
-## Frontend
-
-Se debe desarrollar una aplicación de React/Redux que contenga las siguientes pantallas/rutas.
-
-__Pagina inicial__: deben armar una landing page con
-
-- [ ] Alguna imagen de fondo representativa al proyecto
-- [ ] Botón para ingresar al home (`Ruta principal`)
-
-__Ruta principal__: debe contener
-
-- [ ] Input de búsqueda para encontrar pokemons por nombre (La búsqueda será exacta, es decir solo encontrará al pokemon si se coloca el nombre completo)
-- [ ] Área donde se verá el listado de pokemons. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta `GET /pokemons` y deberá mostrar su:
-  - Imagen
-  - Nombre
-  - Tipos (Electrico, Fuego, Agua, etc)
-- [ ] Botones/Opciones para filtrar por tipo de pokemon y por pokemon existente o creado por nosotros
-- [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los pokemons por orden alfabético y por ataque
-- [ ] Paginado para ir buscando y mostrando los siguientes pokemons, 12 pokemons por pagina.
-
-__IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto los pokemons traidos desde la API como así también las de la base de datos. Por otro lado, si revisan el endpoint que trae todos los pokemons verán que no muestra la información del pokemon sino una URL para hacer un subrequest y obtener los datos de allí. Tendrán que por cada pokemon que van a mostrar hacer otro request a esa URL para obtener su imagen y tipos. Debido a que esto puede hacer que la búsqueda sea muy lenta limitar el resultado total a 40 pokemons totales.
-
-__Ruta de detalle de Pokemon__: debe contener
-
-- [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
-- [ ] Número de Pokemon (id)
-- [ ] Estadísticas (vida, ataque, defensa, velocidad)
-- [ ] Altura y peso
-
-__Ruta de creación__: debe contener
-
-- [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
-- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon
-- [ ] Botón/Opción para crear un nuevo Pokemon
-
-> Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.
-
-## Base de datos
-
-El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterísco deben ser obligatorias):
-
-- [ ] Pokemon con las siguientes propiedades:
-  - ID (Número de Pokemon) * : No puede ser un ID de un pokemon ya existente en la API pokeapi
-  - Nombre *
-  - Vida
-  - Ataque
-  - Defensa
-  - Velocidad
-  - Altura
-  - Peso
-- [ ] Tipo con las siguientes propiedades:
-  - ID
-  - Nombre
-
-La relación entre ambas entidades debe ser de muchos a muchos ya que un pokemon puede pertenecer a más de un tipo y, a su vez, un tipo puede incluir a muchos pokemons.
-
-__IMPORTANTE__: Pensar como modelar los IDs de los pokemons en la base de datos. Existen distintas formas correctas de hacerlo pero tener en cuenta que cuando hagamos click en alguno, este puede provenir de la API o de la Base de Datos por lo que cuando muestre su detalle no debería haber ambigüedad en cual se debería mostrar. Por ejemplo si en la API el pokemon `Bulbasaur` tiene id = 1 y en nuestra base de datos creamos un nuevo pokemon `Henry` con id = 1, ver la forma de diferenciarlos cuando querramos acceder al detalle del mismo.
-
-## Backend
-
-Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
-
-__IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
-
-- [ ] __GET /pokemons__:
-  - Obtener un listado de los pokemons desde pokeapi.
-  - Debe devolver solo los datos necesarios para la ruta principal
-- [ ] __GET /pokemons/{idPokemon}__:
-  - Obtener el detalle de un pokemon en particular
-  - Debe traer solo los datos pedidos en la ruta de detalle de pokemon
-  - Tener en cuenta que tiene que funcionar tanto para un id de un pokemon existente en pokeapi o uno creado por ustedes
-- [ ] __GET /pokemons?name="..."__:
-  - Obtener el pokemon que coincida exactamente con el nombre pasado como query parameter (Puede ser de pokeapi o creado por nosotros)
-  - Si no existe ningún pokemon mostrar un mensaje adecuado
-- [ ] __POST /pokemons__:
-  - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de pokemons por body
-  - Crea un pokemon en la base de datos relacionado con sus tipos.
-- [ ] __GET /types__:
-  - Obtener todos los tipos de pokemons posibles
-  - En una primera instancia deberán traerlos desde pokeapi y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
-
-## Testing
-
-- [ ] Al menos tener un componente del frontend con sus tests respectivos
-- [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+### 🚀 Installation
+1.  Clone the repository.
+2.  Install dependencies: `npm install` in both `api` and `client` folders.
+3.  Configure `.env` in `api` with your PostgreSQL credentials.
+4.  Start: `npm start` in both folders.
+</details>

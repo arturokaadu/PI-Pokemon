@@ -1,4 +1,5 @@
 import axios from 'axios';
+const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 //const axios = require( 'axios')
 
 
@@ -12,7 +13,7 @@ export const ORDER_BY_TYPE = "ORDER_BY_TYPE" */
 export function getPokemon() {
   return async (dispatch) => {
     try {
-      var pokemon = await axios('http://localhost:3001/pokemons');
+      var pokemon = await axios(`${baseUrl}/pokemons`);
       return dispatch({
         type: "GET_POKEMON",
         payload: pokemon.data
@@ -44,7 +45,7 @@ export function orderByType(payload) {
 export function getPokeType() {
   return async (dispatch) => {
     try {
-      let pokeType = await axios('http://localhost:3001/types');
+      let pokeType = await axios(`${baseUrl}/types`);
       //console.log(pokeType.data);
       return dispatch({
         type: "GET_TYPES",
@@ -59,7 +60,7 @@ export function getPokeType() {
 export function getName(name) {
   return async (dispatch) => {
     try {
-      const pokNam = await axios.get("http://localhost:3001/pokemons?name=" + name)
+      const pokNam = await axios.get(`${baseUrl}/pokemons?name=` + name)
 
       //console.log("Data from getName: ", pokNam.data);
       return dispatch({
@@ -80,7 +81,7 @@ export function getType(typeName) {
   return async (dispatch) => {
     try {
       const pokemonsByType = await axios.get(
-        `http://localhost:3001/pokemons/types?name=${typeName}`
+        `${baseUrl}/pokemons/types?name=${typeName}`
       );
 
       //console.log("Data from getType: ", pokemonsByType.data);
@@ -101,7 +102,7 @@ export function getType(typeName) {
 export function getId(id) {
   return async function (dispatch) {
     try {
-      const idPoke = await axios(`http://localhost:3001/pokemons/${id}`)
+      const idPoke = await axios(`${baseUrl}/pokemons/${id}`)
 
       //console.log("id is: ", idPoke.data);
 
@@ -121,8 +122,8 @@ export function getId(id) {
 export function getDetailId(id) {
   return async function (dispatch) {
     try {
-      const idPoke = await axios(`http://localhost:3001/pokemons/${id}`)
-      const evolutionData = await axios.get(`http://localhost:3001/pokemons/${id}/evolution`);
+      const idPoke = await axios(`${baseUrl}/pokemons/${id}`)
+      const evolutionData = await axios.get(`${baseUrl}/pokemons/${id}/evolution`);
 
       //console.log("id is: ", idPoke.data);
 
@@ -145,7 +146,7 @@ export function getDetailId(id) {
 export function postPoke(payload) {
   return async function (dispatch) {
     //le paso un payload tambien a la ruta 
-    const post = await axios.post("http://localhost:3001/pokemons", payload)
+    const post = await axios.post(`${baseUrl}/pokemons`, payload)
     return dispatch({
       type: "POST_POKEMON",
       payload: post
