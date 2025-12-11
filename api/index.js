@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   if (process.env.NODE_ENV !== 'production') {
     server.listen(3001, () => {
       console.log('%s listening at 3001'); // eslint-disable-line no-console
