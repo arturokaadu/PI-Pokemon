@@ -12,21 +12,25 @@ const router = Router();
 // acá conseguimos todos los poke y tambien funciona si queremos buscar por el nombre de alguno, por ejemplo http://localhost:3001/pokemons?name=clefairy devuelve los datos del pokemon 35 clefairy
 let pokesMagicos = []
 
+router.get("/", (req, res) => {
+  res.status(200).send("API is running");
+});
+
 router.get("/pokemons", async (req, res) => {
   try {
     const { name } = req.query;
-    if (!pokesMagicos.length){
+    if (!pokesMagicos.length) {
 
-        const allPoke = await getApi();
-        /* console.log(allPoke) */
-        pokesMagicos = [...allPoke]
+      const allPoke = await getApi();
+      /* console.log(allPoke) */
+      pokesMagicos = [...allPoke]
     }
 
-    
-    const apiYDb = await TodoPokemoncitos(pokesMagicos) 
+
+    const apiYDb = await TodoPokemoncitos(pokesMagicos)
     if (name) {
       // el lowerCase es por si las personas que buscan escriben con minusculas
-        
+
       const losPoke = apiYDb.filter((e) =>
         e.name.toLowerCase().includes(name.toLowerCase())
       );
@@ -184,7 +188,7 @@ try {
 }); */
 
 router.get("/pokemons/:id/evolution", async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
     const evolutionChainUril = response.data.evolution_chain.url;
@@ -228,7 +232,7 @@ router.post("/pokemons", async (req, res) => {
     img,
     createdInDb,
     //24/8 JUST IN CASE
-     types,
+    types,
   } = req.body;
   const miPoke = await Pokemon.create({
     name,
@@ -243,19 +247,19 @@ router.post("/pokemons", async (req, res) => {
     createdInDb,
   });
   /* console.log(types) */
-   const tipoBd1 = await Types.findAll({
-    where: { name: types[0]},
-    });
-    
-    miPoke.addTypes(tipoBd1);
-    if (types[1]) {
-        const tipoBd2 = await Types.findAll({
-            where: { name: types[1]},
-            });
-            miPoke.addTypes(tipoBd2); 
-    }
+  const tipoBd1 = await Types.findAll({
+    where: { name: types[0] },
+  });
 
-   res.send("Poke bien creado");
+  miPoke.addTypes(tipoBd1);
+  if (types[1]) {
+    const tipoBd2 = await Types.findAll({
+      where: { name: types[1] },
+    });
+    miPoke.addTypes(tipoBd2);
+  }
+
+  res.send("Poke bien creado");
 });
 
 
