@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Root package.json to proxy Vercel builds to client folder",
     "scripts": {
-        "build": "cd client && npm install && npm run build"
+        "build": "cd client && npm install && npm run build && cd .. && mv client/build build"
     },
     "private": true,
     "engines": {
