@@ -3,24 +3,24 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOSTPG, DB_PORT, DB_DATABASE, DATABASE_URL
+  DB_USER, DB_PASSWORD, DB_HOSTPG, DB_PORT, DB_DATABASE, DATABASE_URL, POSTGRES_URL
 } = process.env;
 
-const sequelize = DATABASE_URL
-  ? new Sequelize(DATABASE_URL, {
-      logging: false,
-      native: false,
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false
-        }
+const sequelize = (POSTGRES_URL || DATABASE_URL)
+  ? new Sequelize(POSTGRES_URL || DATABASE_URL, {
+    logging: false,
+    native: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
       }
-    })
+    }
+  })
   : new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTPG}:${DB_PORT}/${DB_DATABASE}`, {
-      logging: false, // set to console.log to see the raw SQL queries
-      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-    });
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -44,8 +44,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Pokemon, Types } = sequelize.models;
 
 // Aca vendrian las relaciones
-Pokemon.belongsToMany(Types,{through: 'tipo-pokemon'}) // from documentation: To create a Many-To-Many relationship, two belongsToMany calls are used together.
-Types.belongsToMany(Pokemon,{through: 'tipo-pokemon'}) // esto es para crear las relaciones de muchos pokemones a muchos tipos y viceversa. 
+Pokemon.belongsToMany(Types, { through: 'tipo-pokemon' }) // from documentation: To create a Many-To-Many relationship, two belongsToMany calls are used together.
+Types.belongsToMany(Pokemon, { through: 'tipo-pokemon' }) // esto es para crear las relaciones de muchos pokemones a muchos tipos y viceversa. 
 // Product.hasMany(Reviews);
 
 

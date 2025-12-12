@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const baseUrl = process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'production' ? "" : "http://localhost:3001");
 //const axios = require( 'axios')
 
 
