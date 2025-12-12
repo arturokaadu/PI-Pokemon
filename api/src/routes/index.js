@@ -27,7 +27,14 @@ router.get("/pokemons", async (req, res) => {
     }
 
 
-    const apiYDb = await TodoPokemoncitos(pokesMagicos)
+    const apiYDb = await TodoPokemoncitos(pokesMagicos);
+
+    // Ensure apiYDb is an array before filtering
+    if (!Array.isArray(apiYDb)) {
+      console.error("TodoPokemoncitos returned non-array:", apiYDb);
+      return res.status(500).send("Error retrieving pokemons");
+    }
+
     if (name) {
       // el lowerCase es por si las personas que buscan escriben con minusculas
 
