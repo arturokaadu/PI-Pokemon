@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const pg = require('pg'); // Required for Vercel deployment
 const {
   DB_USER, DB_PASSWORD, DB_HOSTPG, DB_PORT, DB_DATABASE, DATABASE_URL, POSTGRES_URL
 } = process.env;
@@ -10,6 +11,7 @@ const sequelize = (POSTGRES_URL || DATABASE_URL)
   ? new Sequelize(POSTGRES_URL || DATABASE_URL, {
     logging: false,
     native: false,
+    dialectModule: pg, // Force pg module for Vercel
     dialectOptions: {
       ssl: {
         require: true,
@@ -20,6 +22,7 @@ const sequelize = (POSTGRES_URL || DATABASE_URL)
   : new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTPG}:${DB_PORT}/${DB_DATABASE}`, {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    dialectModule: pg, // Force pg module for Vercel
   });
 const basename = path.basename(__filename);
 
