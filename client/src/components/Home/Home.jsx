@@ -41,8 +41,11 @@ export default function Home() {
 
   // se va a ejecutar cada vez que ocurra dispatch como en el did mount >// vacio no depende de nada
   useEffect(() => {
-    dispatch(getPokemon());
-    dispatch(getPokeType());
+    // Artificial delay to show off Pikachu! ⚡
+    setTimeout(() => {
+      dispatch(getPokemon());
+      dispatch(getPokeType());
+    }, 2000);
   }, [dispatch]); //otherwise loop
 
   function handleClick(e) {
@@ -79,9 +82,9 @@ export default function Home() {
     <div className={styles.cardContainer}>
       <div className={styles.nameContainer}>
 
-      <Link to="/createpokemon" className={styles.createpoke}>
-        <h3> Crea nuevos Pokemons!</h3>
-      </Link>
+        <Link to="/createpokemon" className={styles.createpoke}>
+          <h3> Crea nuevos Pokemons!</h3>
+        </Link>
       </div>
       <button
         onClick={(e) => {
@@ -108,11 +111,14 @@ export default function Home() {
       <div className={styles.card}>
         {/* cambiamos al current para que aparezcan los que quiero */}
         {currentPoke.length === 0 ? (
-          <img
-            className={styles.image}
-            src={logo2}
-            alt="No hay pokemones"
-          ></img>
+          <div className={styles.loadingContainer}>
+            <img
+              className={styles.image}
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+              alt="Loading..."
+            ></img>
+            <p className={styles.loadingText}>Loading...</p>
+          </div>
         ) : (
           currentPoke.map((c) => {
             return (
@@ -122,7 +128,7 @@ export default function Home() {
                     name={c.name}
                     img={c.img}
                     types={c.types}
-                    id= {c.id}
+                    id={c.id}
                   />
                 </Link>
               </div>

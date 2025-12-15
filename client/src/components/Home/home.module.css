@@ -122,12 +122,32 @@ html {
     grid-area: pikachu;
 }
 
+.loadingContainer {
+    grid-area: pokes;
+    /* Redundant if parent is .card, but keeps it safe */
+    grid-column: 1 / -1;
+    /* SPAN ALL COLUMNS! This fixes the centering */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 .image {
-    position: absolute;
-    width: 35%;
-    top: 61%;
-    right: 50%;
-    transform: translate(50%, -50%);
+    width: 150px;
+    height: auto;
+}
+
+.loadingText {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2rem;
+    color: #253064;
+    /* Dark blue/purple matching the theme */
+    margin-top: 10px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px #fff;
 }
 
 .cardFormat {
@@ -211,7 +231,7 @@ html {
 
 @media (max-width: 452px) {
     .searchB {
-      /*   transform: scale(0.9); */
+        /*   transform: scale(0.9); */
         margin-right: -18px;
         margin-left: -208px;
 
@@ -221,7 +241,7 @@ html {
         margin-top: 8px;
     }
 
-    .recarga{
+    .recarga {
         transform: translate(7px, -45px);
     }
 }

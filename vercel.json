@@ -23,6 +23,21 @@
             "dest": "/api/index.js"
         },
         {
+            "src": "/static/(.*)",
+            "dest": "/client/static/$1"
+        },
+        {
+            "src": "/manifest.json",
+            "dest": "/client/manifest.json"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/client/favicon.ico"
+        },
+        {
+            "handle": "filesystem"
+        },
+        {
             "src": "/(.*)",
             "dest": "/client/index.html"
         }
