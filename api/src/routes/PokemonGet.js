@@ -5,13 +5,37 @@ const { Pokemon, Types } = require("../db");
 const fs = require("fs");
 const path = require("path");
 
-const CACHE_PATH = path.join(__dirname, "pokecache.json");
+const CACHE_PATH = path.join(process.env.VERCEL ? "/tmp" : __dirname, "pokecache.json");
 
 //traigo a este archivo la llamada a todos los poke de la api para reducir la longitud
 // acá conseguimos los datos necesarios de los pokemons desde la api
 const getApi = async () => {
   try {
-    // Check for cache first
+    // If on Vercel, skip file cache to avoid FS issues/timeouts
+    if (process.env.VERCEL) {
+      const apiUrl = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=12");
+      if (!apiUrl.data || !apiUrl.data.results) return [];
+      const pokeDatita = apiUrl.data.results.map((poke) => poke.url);
+      const promises = pokeDatita.map((url) => axios.get(url));
+      const responses = await Promise.all(promises);
+      const axios4TheWin = responses.map((r) => {
+        return {
+          name: r.data.name,
+          id: r.data.id,
+          img: r.data.sprites.other.dream_world.front_default,
+          types: r.data.types.map((t) => t.type.name),
+          life: r.data.stats[0].base_stat,
+          attack: r.data.stats[1].base_stat,
+          defense: r.data.stats[2].base_stat,
+          speed: r.data.stats[5].base_stat,
+          height: r.data.height,
+          weight: r.data.weight,
+        };
+      });
+      return axios4TheWin;
+    }
+
+    // Check for cache first (Local dev only)
     if (fs.existsSync(CACHE_PATH)) {
       console.log("Loading Pokemons from local cache...");
       const cachedData = fs.readFileSync(CACHE_PATH, "utf-8");
@@ -22,7 +46,7 @@ const getApi = async () => {
 
     // usamos async await para trabajar de manera asincrona, para que espere a que se termine un proceso primero
     const apiUrl = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon?limit=151"
+      "https://pokeapi.co/api/v2/pokemon?limit=12"
     ); //establecemos un limite para los pokemones que traemos
 
     if (!apiUrl.data || !apiUrl.data.results) return [];

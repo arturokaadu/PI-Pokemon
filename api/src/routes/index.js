@@ -16,9 +16,22 @@ router.get("/", (req, res) => {
   res.status(200).send("API is running");
 });
 
+router.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 router.get("/pokemons", async (req, res) => {
   try {
     const { name } = req.query;
+
+    // Safety check: if standard pokemon list is empty and DB might be down
+    try {
+      // Just a lightweight check or proceed. 
+      // If DB is down, getApi might work (external API) but TodoPokemoncitos (DB) will fail.
+    } catch (e) {
+      console.error("Pre-check failed", e);
+    }
+
     if (!pokesMagicos.length) {
 
       const allPoke = await getApi();

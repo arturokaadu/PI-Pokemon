@@ -22,12 +22,15 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 // Syncing all the models at once.
-conn.sync({ alter: true }).then(() => {
-  if (process.env.NODE_ENV !== 'production') {
-    server.listen(3001, () => {
-      console.log('%s listening at 3001'); // eslint-disable-line no-console
-    });
-  }
+// Syncing all the models at once.
+conn.sync().then(() => {
+  console.log('Database connected');
+}).catch(err => {
+  console.error('Unable to connect to the database:', err);
+});
+
+server.listen(3001, () => {
+  console.log('%s listening at 3001'); // eslint-disable-line no-console
 });
 
 module.exports = server;
