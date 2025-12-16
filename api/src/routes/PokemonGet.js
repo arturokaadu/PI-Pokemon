@@ -13,7 +13,7 @@ const getApi = async () => {
   try {
     // If on Vercel, skip file cache to avoid FS issues/timeouts
     if (process.env.VERCEL) {
-      const apiUrl = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=12");
+      const apiUrl = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=40");
       if (!apiUrl.data || !apiUrl.data.results) return [];
       const pokeDatita = apiUrl.data.results.map((poke) => poke.url);
       const promises = pokeDatita.map((url) => axios.get(url));
@@ -46,7 +46,7 @@ const getApi = async () => {
 
     // usamos async await para trabajar de manera asincrona, para que espere a que se termine un proceso primero
     const apiUrl = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon?limit=12"
+      "https://pokeapi.co/api/v2/pokemon?limit=40"
     ); //establecemos un limite para los pokemones que traemos
 
     if (!apiUrl.data || !apiUrl.data.results) return [];
