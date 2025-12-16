@@ -9,72 +9,89 @@
     <img src='https://img.shields.io/badge/Neon-%2300E599.svg?style=for-the-badge&logo=neon&logoColor=white' />
 </p>
 
-# 🚀 PI-Pokemon - Live Demo
+# 🚀 Live Demo / Deploy
 
-**[👉 Click here to visit the created App](https://api-ephbecees-kaaduarturo4-8233s-projects.vercel.app)**
-
-**Individual Project - Henry Bootcamp**
-
-![App Screenshot](screenshot.png)
+**[👉 VISITAR APP / VISIT APP](https://pi-pokemon-brown.vercel.app/home)**
 
 ---
 
-<details open>
-<summary><strong>🇪🇸 VERSIÓN EN ESPAÑOL</strong></summary>
+<p align="center">
+  <a href="#-english">🇬🇧 ENGLISH</a> | <a href="#-español">🇪🇸 ESPAÑOL</a>
+</p>
 
-### 📄 Descripción
-Esta es una Single Page Application (SPA) temática de Pokémon. Permite buscar, filtrar, ordenar y crear pokemones. Consume datos de la [PokeAPI](https://pokeapi.co/) y también cuenta con una base de datos local propia para almacenar los pokemones creados por el usuario.
+---
 
-### ✨ Funcionalidades
-*   **Landing Page**: Una página de bienvenida con imagen de fondo y botón de ingreso.
-*   **Home Page**:
-    *   Visualización de tarjetas de Pokémon con imagen, nombre y tipos.
-    *   **Buscador**: Encuentra pokemones por nombre exacto.
-    *   **Filtros**: Por tipo de producto (fuego, agua, etc.) y por origen (API o Base de Datos).
-    *   **Ordenamiento**: Alfabético (A-Z, Z-A) y por Fuerza (Ataque).
-    *   **Paginado**: Navegación fluida entre listados.
-*   **Detalle**: Vista detallada con ID, estadísticas (vida, ataque, defensa, velocidad), altura, peso y tipos.
-*   **Creación**: Formulario controlado para crear nuevos pokemones y asignarle tipos.
-
-### 🛠 Tecnologías
-*   **Frontend**: React, Redux, CSS puro (sin librerías externas).
-*   **Backend**: Node.js, Express.
-*   **Base de Datos**: PostgreSQL, Sequelize.
-
-### 🚀 Instalación
-1.  Clonar el repositorio.
-2.  Instalar dependencias: `npm install` en carpetas `api` y `client`.
-3.  Configurar `.env` en `api` con tus credenciales de PostgreSQL.
-4.  Iniciar: `npm start` en ambas carpetas.
-</details>
-
-<br>
-
-<details>
-<summary><strong>🇬🇧 ENGLISH VERSION</strong></summary>
+## 🇬🇧 ENGLISH
 
 ### 📄 Description
-This is a Pokémon-themed Single Page Application (SPA). It allows users to search, filter, sort, and create Pokémons. It consumes data from the [PokeAPI](https://pokeapi.co/) and also uses a local database to store user-created Pokémons.
+This is a full-stack **Single Page Application (SPA)** designed for Pokémon enthusiasts. It consumes data from the [PokeAPI](https://pokeapi.co/) and stores user-created custom Pokémons in a local PostgreSQL database. The app features a robust filtering and sorting system, detail views, and a creation form.
+
+### 📸 Screenshots
+
+#### Landing Page
+![Landing Page](screenshots/landing_page.png)
+
+#### Home Page (Search & Filters)
+![Home Page](screenshots/home_page.png)
+
+#### Detail View
+![Detail Page](screenshots/detail_page.png)
+
+#### Create your own Pokemon!
+![Create Page](screenshots/create_page.png)
 
 ### ✨ Features
-*   **Landing Page**: Welcome screen with background image and entry button.
+*   **Landing Page**: Welcome screen with entry button.
 *   **Home Page**:
-    *   Display Pokémon cards with image, name, and types.
-    *   **Search**: Find Pokémons by exact name.
-    *   **Filters**: By type (fire, water, etc.) and origin (API or Database).
-    *   **Sorting**: Alphabetical (A-Z, Z-A) and by Strength (Attack).
-    *   **Pagination**: Smooth navigation through lists.
-*   **Detail View**: Detailed stats including ID, health, attack, defense, speed, height, weight, and types.
-*   **Creation**: Controlled form to create new Pokémons and assign types.
+    *   **Search Bar**: Find Pokémons by name.
+    *   **Filtering**: By Type (Fire, Water, etc.) and Origin (API vs Database).
+    *   **Sorting**: Alphabetical and by Attack strength.
+    *   **Pagination**: Smooth navigation through 12 cards per page.
+*   **Detail Page**: ID, Stats (HP, Attack, Defense, Speed), Height, Weight, and Types.
+*   **Create Form**: Validate inputs and create custom Pokémons.
 
 ### 🛠 Tech Stack
-*   **Frontend**: React, Redux, Pure CSS.
+*   **Frontend**: React, Redux, Pure CSS (Modules).
 *   **Backend**: Node.js, Express.
 *   **Database**: PostgreSQL, Sequelize.
+*   **Deployment**: Vercel (Client & API), Neon (Serverless Postgres).
 
-### 🚀 Installation
-1.  Clone the repository.
-2.  Install dependencies: `npm install` in both `api` and `client` folders.
-3.  Configure `.env` in `api` with your PostgreSQL credentials.
-4.  Start: `npm start` in both folders.
-</details>
+---
+
+## 🇪🇸 ESPAÑOL
+
+### 📄 Descripción
+Esta es una **Single Page Application (SPA)** Full Stack temática de Pokémon. Consume datos de la [PokeAPI](https://pokeapi.co/) y permite alojar pokemones propios en una base de datos PostgreSQL. Cuenta con un sistema avanzado de filtrado, ordenamiento y creación.
+
+### 📸 Capturas de Pantalla
+
+#### Landing Page
+![Landing Page](screenshots/landing_page.png)
+
+#### Home Page (Búsqueda y Filtros)
+![Home Page](screenshots/home_page.png)
+
+#### Detalle del Pokemon
+![Detail Page](screenshots/detail_page.png)
+
+#### ¡Crea tu propio Pokemon!
+![Create Page](screenshots/create_page.png)
+
+### ✨ Funcionalidades
+*   **Landing Page**: Pantalla de bienvenida.
+*   **Home Page**:
+    *   **Buscador**: Encuentra pokemones por nombre.
+    *   **Filtros**: Por Tipo y por Origen (Creados vs Existentes).
+    *   **Ordenamiento**: Alfabético y por Fuerza de Ataque.
+    *   **Paginado**: Navegación fluida.
+*   **Detalle**: IDs, Estadísticas completas (Vida, Ataque, Defensa), Peso y Altura.
+*   **Formulario de Creación**: Validaciones en tiempo real para crear nuevos pokemones.
+
+### 🛠 Tecnologías
+*   **Frontend**: React, Redux, CSS Puro.
+*   **Backend**: Node.js, Express.
+*   **Base de Datos**: PostgreSQL, Sequelize.
+*   **Despliegue**: Vercel (Front & Back), Neon (Base de datos).
+
+---
+**Individual Project - Henry Bootcamp**
